@@ -44,8 +44,8 @@ public class PostagemController {
 	}
 
 	// Obtendo as postagens por id
-	@GetMapping("/{id_postagem}")
-	public ResponseEntity<Postagem> buscarPorId(@PathVariable (value = "id_postagem") Long id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<Postagem> buscarPorId(@PathVariable (value = "id") Long id) {
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
@@ -58,22 +58,22 @@ public class PostagemController {
 		return ResponseEntity.ok(repository.findByTituloContainingIgnoreCase(titulo));
 	}
 
-	@PostMapping("/{id_usuario}/novo")
-	public ResponseEntity<Postagem> novoPost(@PathVariable(value = "id_usuario") Long id,
+	@PostMapping("/{id}/novo")
+	public ResponseEntity<Postagem> novoPost(@PathVariable(value = "id") Long id,
 			@RequestBody Postagem novoPost) {
 		return ResponseEntity.status(201).body(repository.save(novoPost));
 	}
 
-	@PutMapping("/atualizar/{id_postagem}")
-	public ResponseEntity<Postagem> atualizarPost(@PathVariable(value = "id_postagem") Long id,
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<Postagem> atualizarPost(@PathVariable(value = "id") Long id,
 			@Valid @RequestBody Postagem atualizacaoPost) {
 		return services.atualizarPost(id, atualizacaoPost)
 				.map(attPost -> ResponseEntity.status(201).body(attPost))
 				.orElse(ResponseEntity.status(304).build());
 	}
 
-	@DeleteMapping("/delete/{id_postagem}")
-	public void delete(@PathVariable (value = "id_postagem")Long id) {
+	@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable (value = "id")Long id) {
 		repository.deleteById(id);
 	}
 }

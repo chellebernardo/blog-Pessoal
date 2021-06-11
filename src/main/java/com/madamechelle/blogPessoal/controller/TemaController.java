@@ -54,7 +54,7 @@ public class TemaController {
 				.orElse(ResponseEntity.status(304).build());
 	}*/
 	
-	@DeleteMapping ("/deletar/{id_tema}")
+	@DeleteMapping ("/deletar/{id}")
 	public void delete (@PathVariable Long id) {
 		repository.deleteById(id);
 	}

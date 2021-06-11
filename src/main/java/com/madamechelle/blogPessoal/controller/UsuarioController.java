@@ -51,8 +51,8 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(401).build());
 	}
 	
-	@GetMapping("/id/{id_usuario}")
-	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable(value = "id_usuario") Long id) {
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable(value = "id") Long id) {
 		return repository.findById(id)
 				.map(usuarioExistente -> ResponseEntity.status(200).body(usuarioExistente))
 				.orElse(ResponseEntity.status(204).build()); 
@@ -69,8 +69,8 @@ public class UsuarioController {
 		}
 	}
 	
-	@PutMapping ("/atualizar/{id_usuario}")
-	public ResponseEntity <Usuario> atualizarUsuario (@Valid @PathVariable  (value = "id_usuario") Long id,
+	@PutMapping ("/atualizar/{id}")
+	public ResponseEntity <Usuario> atualizarUsuario (@Valid @PathVariable  (value = "id") Long id,
 			@Valid @RequestBody Usuario atualizacaoUsuario) {
 		return services.atualizarUsuario(id, atualizacaoUsuario)
 				.map(usuarioAtualizado -> ResponseEntity.status(201).body(usuarioAtualizado))
