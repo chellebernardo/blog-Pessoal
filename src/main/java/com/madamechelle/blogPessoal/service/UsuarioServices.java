@@ -51,12 +51,17 @@ public class UsuarioServices {
 		
 		if (usuario.isPresent()) {
 			if (encoder.matches(user.get().getSenha(), user.get().getSenha())) {
+				
 				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
 				byte [] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String authHeader = "Basic " + new String (encodedAuth);
 				
 				user.get().setToken(authHeader);
+				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
+				user.get().setFoto(usuario.get().getFoto());
+				user.get().setGenero(usuario.get().getGenero());
+				user.get().setTipo(usuario.get().getTipo());
 				
 				return user;
 			}
@@ -81,6 +86,9 @@ public class UsuarioServices {
 		if (usuarioExistente.isPresent()) {
 			usuarioExistente.get().setNome(atualizacaoUsuario.getNome());
 			usuarioExistente.get().setSenha(atualizacaoUsuario.getSenha());
+			usuarioExistente.get().setFoto(atualizacaoUsuario.getFoto());
+			usuarioExistente.get().setGenero(atualizacaoUsuario.getGenero());
+			usuarioExistente.get().setTipo(atualizacaoUsuario.getTipo());
 			return Optional.ofNullable(repository.save(usuarioExistente.get()));
 		} else {
 			return Optional.empty();
@@ -102,6 +110,7 @@ public class UsuarioServices {
 		if (postExistente.isPresent()) {
 			postExistente.get().setTitulo(atualizacaoPost.getTitulo());
 			postExistente.get().setTexto(atualizacaoPost.getTexto());
+			postExistente.get().setTemasRelacionados(atualizacaoPost.getTemasRelacionados());
 			return Optional.ofNullable(repositoryP.save(atualizacaoPost));
 		} else {
 			return Optional.empty();

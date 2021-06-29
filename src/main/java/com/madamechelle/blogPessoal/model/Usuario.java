@@ -33,6 +33,12 @@ public class Usuario {
 	@NotNull (message = "A senha não pode ser nula, please!")
 	private String senha;
 	
+	private String foto;
+
+	private String tipo;
+
+	private String genero;
+	
 	@OneToMany (mappedBy = "userPosts", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties ({"myPosts"})
 	private List <Postagem> myPosts;
@@ -67,6 +73,30 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public List<Postagem> getMyPosts() {
