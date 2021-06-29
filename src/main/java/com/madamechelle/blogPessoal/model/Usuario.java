@@ -34,9 +34,11 @@ public class Usuario {
 	private String senha;
 	
 	private String foto;
-
+	
+	@NotNull (message = "É preciso escolher um tipo de usuário")
 	private String tipo;
-
+	
+	@NotNull (message = "É precio escolher um gênero")
 	private String genero;
 	
 	@OneToMany (mappedBy = "userPosts", cascade = CascadeType.ALL)
