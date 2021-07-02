@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import com.madamechelle.blogPessoal.service.UsuarioServices;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 	
 	private @Autowired UsuarioRepository repository;
@@ -51,7 +53,7 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(401).build());
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable(value = "id") Long id) {
 		return repository.findById(id)
 				.map(usuarioExistente -> ResponseEntity.status(200).body(usuarioExistente))

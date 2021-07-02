@@ -21,7 +21,7 @@ import com.madamechelle.blogPessoal.service.UsuarioServices;
 
 @RestController
 @RequestMapping("/postagens")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 
 	// Injeção de dependência
@@ -53,12 +53,12 @@ public class PostagemController {
 	}
 
 	// Para obter as postagens por Título
-	@GetMapping("/titulo/{titulo}")
+	@GetMapping("/{titulo}")
 	public ResponseEntity<List<Postagem>> buscarPorTitulo(@PathVariable (value = "titulo") String titulo) {
 		return ResponseEntity.ok(repository.findByTituloContainingIgnoreCase(titulo));
 	}
 
-	@PostMapping("/{id}/novo")
+	@PostMapping("/novo/{id}")
 	public ResponseEntity<Postagem> novoPost(@PathVariable(value = "id") Long id,
 			@RequestBody Postagem novoPost) {
 		return ResponseEntity.status(201).body(repository.save(novoPost));

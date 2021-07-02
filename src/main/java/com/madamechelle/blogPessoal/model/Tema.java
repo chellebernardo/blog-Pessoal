@@ -20,7 +20,7 @@ public class Tema {
 	private Long id;
 	
 	@NotNull
-	private String descricao;
+	private String nome;
 	
 	@ManyToMany(mappedBy = "temasRelacionados")
 	//@JsonIgnoreProperties({ "" })
@@ -34,12 +34,12 @@ public class Tema {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Postagem> getMeusPosts() {
@@ -49,5 +49,5 @@ public class Tema {
 	public void setMeusPosts(List<Postagem> meusPosts) {
 		this.meusPosts = meusPosts;
 	}
-	
+
 }

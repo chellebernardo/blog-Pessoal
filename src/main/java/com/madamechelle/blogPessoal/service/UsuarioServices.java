@@ -60,7 +60,6 @@ public class UsuarioServices {
 				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
 				user.get().setFoto(usuario.get().getFoto());
-				user.get().setGenero(usuario.get().getGenero());
 				user.get().setTipo(usuario.get().getTipo());
 				
 				return user;
@@ -87,7 +86,6 @@ public class UsuarioServices {
 			usuarioExistente.get().setNome(atualizacaoUsuario.getNome());
 			usuarioExistente.get().setSenha(atualizacaoUsuario.getSenha());
 			usuarioExistente.get().setFoto(atualizacaoUsuario.getFoto());
-			usuarioExistente.get().setGenero(atualizacaoUsuario.getGenero());
 			usuarioExistente.get().setTipo(atualizacaoUsuario.getTipo());
 			return Optional.ofNullable(repository.save(usuarioExistente.get()));
 		} else {

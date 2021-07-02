@@ -27,7 +27,7 @@ public class Usuario {
 	private String nome;
 	
 	@NotNull (message = "Aqui precisa ter um usuário válido!")
-	@Size (min = 5, max = 15, message = "User entre 3 e 15")
+	@Size (min = 12, max = 50, message = "User entre 12 e 50")
 	private String usuario;
 	
 	@NotNull (message = "A senha não pode ser nula, please!")
@@ -37,9 +37,6 @@ public class Usuario {
 	
 	@NotNull (message = "É preciso escolher um tipo de usuário")
 	private String tipo;
-	
-	@NotNull (message = "É precio escolher um gênero")
-	private String genero;
 	
 	@OneToMany (mappedBy = "userPosts", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties ({"myPosts"})
@@ -91,14 +88,6 @@ public class Usuario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
 	}
 
 	public List<Postagem> getMyPosts() {

@@ -35,9 +35,9 @@ public class TemaController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping ("/nome/{nome}")
+	@GetMapping ("/{nome}")
 	public ResponseEntity<List<Tema>> buscarPorNome (@PathVariable String nome) {
-		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
+		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping ("/novo")

@@ -15,7 +15,7 @@ public class TemaService {
 	private TemaRepository repository;
 	
 	public Optional <Object> cadastrarTema (String novoTema){
-		Optional<Tema> temaExistente = repository.findByDescricao(novoTema);
+		Optional<Tema> temaExistente = repository.findByNome(novoTema);
 		
 		if (temaExistente.isPresent()) {
 			return Optional.empty();
