@@ -15,8 +15,6 @@ public class UsuarioLogin {
 	private String foto;
 	
 	private String tipo;
-	
-	private String genero;
 
 	public Long getId() {
 		return id;
@@ -72,14 +70,6 @@ public class UsuarioLogin {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
 	}
 
 }

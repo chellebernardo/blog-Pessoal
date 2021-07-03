@@ -53,7 +53,7 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(401).build());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/pesquisar/{id}")
 	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable(value = "id") Long id) {
 		return repository.findById(id)
 				.map(usuarioExistente -> ResponseEntity.status(200).body(usuarioExistente))
