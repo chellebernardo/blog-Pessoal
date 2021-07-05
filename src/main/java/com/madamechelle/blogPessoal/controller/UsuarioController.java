@@ -28,7 +28,7 @@ import com.madamechelle.blogPessoal.service.UsuarioServices;
 public class UsuarioController {
 	
 	private @Autowired UsuarioRepository repository;
-	private @Autowired UsuarioServices services;
+	private @Autowired UsuarioServices usuarioService;
 	
 	@GetMapping ("/todes")
 	public ResponseEntity <List<Usuario>> GetAll (){
@@ -43,12 +43,12 @@ public class UsuarioController {
 	
 	@PostMapping ("/cadastrar")
 	public ResponseEntity<Usuario> cadastrarUsuario (@Valid @RequestBody Usuario usuario){
-		return ResponseEntity.status(201).body(services.cadastrarUsuario(usuario));
+		return ResponseEntity.status(201).body(usuarioService.cadastrarUsuario(usuario));
 	}
 	
 	@PostMapping ("/login")
 	public ResponseEntity<UsuarioLogin> authentication (@RequestBody Optional <UsuarioLogin> user){
-		return services.login(user)
+		return usuarioService.login(user)
 				.map(usuarioExistente -> ResponseEntity.status(200).body(usuarioExistente))
 				.orElse(ResponseEntity.status(401).build());
 	}
@@ -74,7 +74,7 @@ public class UsuarioController {
 	@PutMapping ("/atualizar/{id}")
 	public ResponseEntity <Usuario> atualizarUsuario (@Valid @PathVariable  (value = "id") Long id,
 			@Valid @RequestBody Usuario atualizacaoUsuario) {
-		return services.atualizarUsuario(id, atualizacaoUsuario)
+		return usuarioService.atualizarUsuario(id, atualizacaoUsuario)
 				.map(usuarioAtualizado -> ResponseEntity.status(201).body(usuarioAtualizado))
 				.orElse(ResponseEntity.status(304).build());
 	}
